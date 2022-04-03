@@ -1,0 +1,15 @@
+services:
+    alpha_sim1: 
+        image: nvidia/cuda:11.6.0-devel-ubuntu18.04
+        stdin_open: true
+        tty: true
+        build: .
+        user: agv
+        privileged: true
+        environment: 
+            - DISPLAY=${DISPLAY}
+            - QT_X11_NO_MITSHM=1
+        volumes: 
+            - /tmp/.X11-unix:/tmp/.X11-unix:rw
+            - ./src:/home/agv/alpha_ws/src
+        network_mode: host
